@@ -45,14 +45,11 @@ public final class SimCluster {
     private final BiFunction<String, MemoryStorage, MemoryStorage> reopenStorage;
 
     private final Map<Long, String> leaderOfTerm = new HashMap<>();
-
     private final Map<Long, byte[]> appliedCommands = new HashMap<>();
-
     public int installSnapshotsDelivered;
 
     public final class SimNode {
         public final String id;
-
         public MemoryStorage storage;
         public RaftNode raft;
         public KvStateMachine kv;

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 186" width="640" height="186" role="img" aria-label="Write throughput. Docker cluster (30 s run): 152 acknowledged writes / second; Local processes (10 s run): 715 acknowledged writes / second">
+<style>
+  .surface{fill:#fcfcfb} .bar{fill:#2a78d6} .t1{fill:#0b0b0b} .t2{fill:#52514e}
+  .muted{fill:#898781} .grid{stroke:#e1e0d9;stroke-width:1} .axis{stroke:#898781;stroke-width:1}
+  text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+  @media (prefers-color-scheme: dark){
+    .surface{fill:#1a1a19} .bar{fill:#3987e5} .t1{fill:#f0efec} .t2{fill:#c3c2b7}
+    .grid{stroke:#2c2c2a}
+  }
+</style>
+<rect class="surface" width="640" height="186" rx="8"/>
+<text class="t1" x="20" y="30" font-size="16" font-weight="600">Write throughput</text>
+<text class="t2" x="20" y="50" font-size="12">16 client threads, 100 B values, 3 nodes; one fsync per write</text>
+<line class="grid" x1="190.0" y1="64" x2="190.0" y2="134.0"/>
+<text class="muted" x="190.0" y="152.0" font-size="11" text-anchor="middle">0</text>
+<line class="grid" x1="285.0" y1="64" x2="285.0" y2="134.0"/>
+<text class="muted" x="285.0" y="152.0" font-size="11" text-anchor="middle">200</text>
+<line class="grid" x1="380.0" y1="64" x2="380.0" y2="134.0"/>
+<text class="muted" x="380.0" y="152.0" font-size="11" text-anchor="middle">400</text>
+<line class="grid" x1="475.0" y1="64" x2="475.0" y2="134.0"/>
+<text class="muted" x="475.0" y="152.0" font-size="11" text-anchor="middle">600</text>
+<line class="grid" x1="570.0" y1="64" x2="570.0" y2="134.0"/>
+<text class="muted" x="570.0" y="152.0" font-size="11" text-anchor="middle">800</text>
+<text class="muted" x="380.0" y="170.0" font-size="11" text-anchor="middle">acknowledged writes / second</text>
+<path class="bar" d="M190,70 H258.2 Q262.2,70 262.2,74 V86 Q262.2,90 258.2,90 H190 Z"/>
+<text class="t2" x="180" y="84.0" font-size="12" text-anchor="end">Docker cluster (30 s run)</text>
+<text class="t1" x="268.2" y="84.0" font-size="12" font-weight="600">152</text>
+<path class="bar" d="M190,106 H525.6 Q529.6,106 529.6,110 V122 Q529.6,126 525.6,126 H190 Z"/>
+<text class="t2" x="180" y="120.0" font-size="12" text-anchor="end">Local processes (10 s run)</text>
+<text class="t1" x="535.6" y="120.0" font-size="12" font-weight="600">715</text>
+<line class="axis" x1="190" y1="64" x2="190" y2="134.0"/>
+</svg>

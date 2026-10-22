@@ -42,12 +42,10 @@ public final class RaftNode {
 
     private final Map<String, Long> nextIndex = new HashMap<>();
     private final Map<String, Long> matchIndex = new HashMap<>();
-
     private final Map<String, Long> inflightUntil = new HashMap<>();
     private long nextHeartbeatAt;
 
     private long heartbeatRound;
-
     private final Map<String, Long> ackedRound = new HashMap<>();
     private final List<PendingRead> pendingReads = new ArrayList<>();
 

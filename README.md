@@ -124,6 +124,12 @@ again. One run on a Ryzen 5 5600H laptop with Docker Desktop (WSL2) printed:
 |-----------:|----:|----:|-----------------------:|
 | 152 | 105.06 ms | 209.88 ms | 631 ms |
 
+<img src="docs/charts/throughput.svg" alt="Write throughput: Docker cluster 152 writes/s (30 s run), local processes 715 writes/s (10 s run)" width="640">
+
+<img src="docs/charts/latency.svg" alt="Write latency on the Docker cluster: p50 105.06 ms, p99 209.88 ms, max 551.35 ms" width="640">
+
+<img src="docs/charts/failover.svg" alt="Leader failover on the Docker cluster: 963 ms, 631 ms and 527 ms over three trials, median 631 ms" width="640">
+
 Throughput is bound by fsync: one synced write inside Docker Desktop's VM took about 6.7 ms on that
 machine, and the leader fsyncs every write separately (no group commit). Full output, the fsync
 measurement, and a no-Docker run are in [BENCHMARKS.md](BENCHMARKS.md).

@@ -20,7 +20,6 @@ public final class KvGrpcService extends KvServiceGrpc.KvServiceImplBase {
 
     private final RaftNode node;
     private final KvStateMachine kv;
-
     private final Map<String, String> clientAddresses;
 
     public KvGrpcService(RaftNode node, KvStateMachine kv, Map<String, String> clientAddresses) {
@@ -67,7 +66,6 @@ public final class KvGrpcService extends KvServiceGrpc.KvServiceImplBase {
             String hint = nle.leaderId() == null ? "" : clientAddresses.getOrDefault(nle.leaderId(), "");
             return KvResponse.newBuilder().setStatus(Status.NOT_LEADER).setLeaderHint(hint).build();
         }
-
         return KvResponse.newBuilder().setStatus(Status.TIMEOUT).build();
     }
 

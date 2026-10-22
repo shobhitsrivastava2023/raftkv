@@ -22,7 +22,6 @@ public final class FileStorage extends MemoryStorage implements AutoCloseable {
     private final Path logFile;
     private final Path snapshotFile;
     private FileChannel log;
-
     private final List<Long> offsets = new ArrayList<>();
 
     public FileStorage(Path dir) {
