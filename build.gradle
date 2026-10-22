@@ -1,0 +1,80 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.google.protobuf' version '0.9.5'
+}
+
+group = 'dev.raftkv'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+def grpcVersion = '1.68.1'
+def protobufVersion = '3.25.5'
+
+dependencies {
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation "com.google.protobuf:protobuf-java:${protobufVersion}"
+    compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
+
+    testImplementation platform('org.junit:junit-bom:5.11.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.26.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+    options.encoding = 'UTF-8'
+}
+
+protobuf {
+    protoc { artifact = "com.google.protobuf:protoc:${protobufVersion}" }
+    plugins {
+        grpc { artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}" }
+    }
+    generateProtoTasks {
+        all()*.plugins { grpc {} }
+    }
+}
+
+application {
+    mainClass = 'dev.raftkv.kv.Main'
+}
+
+test {
+    useJUnitPlatform()
+    maxHeapSize = '1g'
+    testLogging {
+        events = ['failed']
+        exceptionFormat = 'full'
+    }
+
+    ['seed', 'seeds', 'verbose'].each { name ->
+        if (System.getProperty(name) != null) {
+            systemProperty name, System.getProperty(name)
+        }
+    }
+    if (System.getProperty('verbose') != null) {
+        testLogging.showStandardStreams = true
+    }
+}
+
+tasks.register('cli', JavaExec) {
+    group = 'application'
+    description = 'Run the RaftKV CLI: ./gradlew cli --args="put k v"'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'dev.raftkv.client.Cli'
+    standardInput = System.in
+}
+
+tasks.register('bench', JavaExec) {
+    group = 'application'
+    description = 'Load-test the docker-compose cluster for 30s and measure leader failover.'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'dev.raftkv.bench.Bench'
+}
